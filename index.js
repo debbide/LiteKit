@@ -9,7 +9,7 @@ const FileStore = require("session-file-store")(session);
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3097;
 const ADMIN_PATH = `/${(process.env.ADMIN_PATH || "admin").replace(/^\/+/, "")}`;
 const ROOT_PATH = path.resolve(process.env.ROOT_PATH || process.cwd());
 const DEFAULT_DATA_DIR = process.platform === "linux" ? "/tmp/webtest" : path.join(process.cwd(), "data");
