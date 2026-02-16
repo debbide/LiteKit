@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/static/tools/styles.css" />
+    <link rel="stylesheet" href="/static/admin.css?v=2" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>后台管理</h1>
+        <div class="breadcrumb" id="breadcrumb"></div>
+      </div>
+      <div class="top-actions">
+        <a class="btn-secondary" href="/">主页</a>
+        <button id="logoutBtn">退出</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="panel-header">
+          <div class="panel-title">文件列表</div>
+          <div class="panel-actions">
+            <button id="newFileBtn">新建文件</button>
+            <button id="newFolderBtn">新建文件夹</button>
+          </div>
+        </div>
+        <table class="file-table">
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>类型</th>
+              <th>大小</th>
+              <th>修改时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="fileTable"></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div class="panel-title">账户</div>
+        </div>
+        <form id="passwordForm" class="stack">
+          <label>
+            当前密码
+            <input type="password" name="currentPassword" required />
+          </label>
+          <label>
+            新密码
+            <input type="password" name="newPassword" required />
+          </label>
+          <button type="submit">修改密码</button>
+          <p id="passwordMsg" class="hint"></p>
+        </form>
+      </section>
+    </main>
+
+    <div id="editorModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+        <div class="modal-header">
+          <div>
+            <div id="editorTitle" class="modal-title">文本编辑</div>
+            <div id="editorPath" class="editor-path">未选择文件</div>
+          </div>
+          <div class="modal-actions">
+            <button id="saveBtn">保存</button>
+            <button id="closeEditorBtn" class="btn-secondary">关闭</button>
+          </div>
+        </div>
+        <textarea id="editor" class="editor" placeholder="选择一个文本文件开始编辑"></textarea>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

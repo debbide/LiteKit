@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>管理员登录</title>
+    <link rel="stylesheet" href="/static/tools/styles.css" />
+    <link rel="stylesheet" href="/static/admin.css?v=2" />
+  </head>
+  <body class="auth-body">
+    <div class="auth-card">
+      <h1>管理员登录</h1>
+      <form id="loginForm">
+        <label>
+          用户名
+          <input type="text" name="username" autocomplete="username" required />
+        </label>
+        <label>
+          密码
+          <input type="password" name="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit">进入后台</button>
+        <p class="error" id="loginError"></p>
+      </form>
+    </div>
+    <script>
+      const form = document.getElementById("loginForm");
+      const errorEl = document.getElementById("loginError");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        errorEl.textContent = "";
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          errorEl.textContent = data.error || "登录失败";
+          return;
+        }
+        window.location.href = window.location.pathname;
+      });
+    </script>
+  </body>
+</html>
